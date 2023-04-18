@@ -6,9 +6,8 @@ body{
 }
 .square{
     box-shadow: 0 35px 55px rgba(0,0,0,0.1);
-    width: 950px;
-    margin: 0 auto;
-    margin: 130px;
+    display: flex;
+    justify-content: center;
 }
 
 .square .izquierdo{
@@ -19,7 +18,7 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     color: rgb(244, 235, 226);
-    padding-bottom: 50px;
+
 }
 .square .derecho{
     padding-top: 40px;
@@ -29,7 +28,7 @@ body{
     display: inline-block;
     padding-left: 25px;
     padding-right: 25px;
-    padding-bottom: 70px;
+
 }
 
 .occupation{
