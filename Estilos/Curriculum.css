@@ -8,6 +8,7 @@ body{
     box-shadow: 0 35px 55px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
+    padding-top: 50px;
 }
 
 .square .izquierdo{
