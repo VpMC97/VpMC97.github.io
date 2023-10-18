@@ -11,7 +11,7 @@ using namespace std;
 //DECLARACION
 
 //Variables
-int OP, OP2, OP3, OP4, CP, CC, CA, CE, y=5, c;
+int OP, OP2, OP3, CP, CC, CA=1, CE, y=5, c;
 char R[20];
 
 //Estructuras
@@ -43,7 +43,7 @@ void Modificar_C();
 void Buscar_C();
 void Reportar_C();
 
-//Procedimiento de artÃ­culos
+//Procedimiento de artículos
 void Agregar_A();
 void Eliminar_A();
 void Modificar_A();
@@ -97,15 +97,15 @@ struct CLIENTES
 
 struct ARTICULOS
 {
-	char cod_a[10];
+	int cod_a;
 	char nombre_a[20];
 	char descripcion_a[80];
-	int cantidad_a;
+	int cantidad_a_T;
+	int cantidad_a_B;
 	float pUnitario_a;
 	char codP_a[10];
 	bool eliminado_a;
-} A_Articulos_t[100];
-ARTICULOS A_Articulos_b[100];
+} A_Articulos[100];
 
 struct EMPLEADOS
 {
@@ -117,22 +117,22 @@ struct EMPLEADOS
 	bool eliminado_e;
 } A_Empleados[50];
 
-//MenÃº y submenÃº
+//Menú y submenú
 void Menu()
 {
 	system("cls");
 	
-	cout<<"SISTEMA DE FACTURACIÃ“N"<<endl<<endl;
+	cout<<"SISTEMA DE FACTURACIÓN"<<endl<<endl;
 	
 	cout<<"\t1. Proveedores"<<endl;
 	cout<<"\t2. Clientes"<<endl;
-	cout<<"\t3. ArtÃ­culos"<<endl;
+	cout<<"\t3. Artículos"<<endl;
 	cout<<"\t4. Empleados"<<endl;
-	cout<<"\t5. FacturaciÃ³n"<<endl;
+	cout<<"\t5. Facturación"<<endl;
 	cout<<"\t6. Reportes"<<endl;
 	cout<<"\t7. Salir"<<endl<<endl;
 	
-	cout<<"Ingrese opciÃ³n: ";
+	cout<<"Ingrese opción: ";
 	cin>>OP;
 
 	do
@@ -153,12 +153,12 @@ void Menu()
 			break;
 			case 7:		
 				system("cls");
-				cout<<"Hasta la prÃ³xima";
+				cout<<"Hasta la próxima";
 				getch();
 			break;
 			default:
 				system("cls");
-				cout<<"OpciÃ³n invÃ¡lida.";
+				cout<<"Opción inválida.";
 				getch();	
 			break;		
 		}
@@ -168,16 +168,16 @@ void Menu()
 void Submenu()
 {
 	system("cls");
-	cout<<"Â¿QuÃ© desea realizar?"<<endl<<endl;
+	cout<<"¿Qué desea realizar?"<<endl<<endl;
 	
 	cout<<"\t1. Ingreso"<<endl;
-	cout<<"\t2. EliminaciÃ³n"<<endl;
-	cout<<"\t3. ModificaciÃ³n"<<endl;
-	cout<<"\t4. BÃºsquedas"<<endl;
+	cout<<"\t2. Eliminación"<<endl;
+	cout<<"\t3. Modificación"<<endl;
+	cout<<"\t4. Búsquedas"<<endl;
 	cout<<"\t5. Reportes"<<endl;
-	cout<<"\t6. Volver a menÃº principal"<<endl<<endl;
+	cout<<"\t6. Volver a menú principal"<<endl<<endl;
 	
-	cout<<"Ingrese opciÃ³n: ";
+	cout<<"Ingrese opción: ";
 	cin>>OP2;
 
 	switch(OP2)
@@ -207,7 +207,7 @@ void Submenu()
 				Eliminar_E();
 			else if (OP==5){
 				system("cls");
-				cout<<"Eliminar factura";
+				cout<<"Eliminar Factura";
 				getch();	}
 			else if (OP==6){
 				system("cls");
@@ -267,7 +267,7 @@ void Submenu()
 		break;
 		default:
 			system("cls");
-			cout<<"OpciÃ³n invÃ¡lida.";
+			cout<<"Opción inválida.";
 			getch();		
 		break;	
 	}
@@ -276,17 +276,17 @@ void Submenu()
 void SubmenuA()
 {
 	system("cls");
-	cout<<"Â¿QuÃ© desea realizar?"<<endl<<endl;
+	cout<<"¿Qué desea realizar?"<<endl<<endl;
 	
 	cout<<"\t1. Ingreso"<<endl;
-	cout<<"\t2. EliminaciÃ³n"<<endl;
-	cout<<"\t3. ModificaciÃ³n"<<endl;
-	cout<<"\t4. BÃºsqueda"<<endl;
+	cout<<"\t2. Eliminación"<<endl;
+	cout<<"\t3. Modificación"<<endl;
+	cout<<"\t4. Búsqueda"<<endl;
 	cout<<"\t5. Reporte"<<endl;
 	cout<<"\t6. Traslado"<<endl;
-	cout<<"\t7. Volver a menÃº principal"<<endl<<endl;
+	cout<<"\t7. Volver a menú principal"<<endl<<endl;
 	
-	cout<<"Ingrese opciÃ³n: ";
+	cout<<"Ingrese opción: ";
 	cin>>OP2;
 
 	switch(OP2)
@@ -296,22 +296,22 @@ void SubmenuA()
 		break;
 		case 2:
 			system("cls");
-			cout<<"Eliminar artÃ­culos";
+			cout<<"Eliminar artículos";
 			getch();
 		break;
 		case 3:
 			system("cls");
-			cout<<"Modificar artÃ­culos";
+			cout<<"Modificar artículos";
 			getch();
 		break;
 		case 4:
 			system("cls");
-			cout<<"Buscar artÃ­culos";
+			cout<<"Buscar artículos";
 			getch();		
 		break;
 		case 5:
 			system("cls");
-			cout<<"Reporte de artÃ­culos";
+			cout<<"Reporte de artículos";
 			getch();	
 		break;
 		case 6:
@@ -322,11 +322,12 @@ void SubmenuA()
 		break;
 		default:
 			system("cls");
-			cout<<"OpciÃ³n invÃ¡lida";
+			cout<<"Opción inválida";
 			getch();
 		break;
 	}
 }
+
 
 //PROCEDIMIENTOS Y FUNCIONES
 void gotoxy(int x,int y){  
@@ -371,9 +372,7 @@ int Buscar(char R[20])
 	{
 		while (i<CA && !encontrado)
 		{
-			if ((strcmp(A_Articulos_t[i].cod_a, R)==0) && (!A_Articulos_t[i].eliminado_a)) 
-				encontrado=true;
-			else if ((strcmp(A_Articulos_t[i].nombre_a, R)==0) && (!A_Articulos_t[i].eliminado_a))
+			if ((strcmp(A_Articulos[i].nombre_a, R)==0) && (!A_Articulos[i].eliminado_a))
 				encontrado=true;
 			else 
 				i++;
@@ -399,33 +398,32 @@ int Buscar(char R[20])
 		return -1;
 }
 
-int BuscarP(char R[10])
+int Buscar2(int Cod)
 {
 	bool encontrado = false;
-	int i = 0;
+	int i=0;
 	
-	while (i<CP && !encontrado)
+	while (i<CA && !encontrado)
 	{
-		if ((strcmp(A_Proveedores[i].cod_p, R)==0) && (!A_Proveedores[i].eliminado_p))
+		if (Cod==A_Articulos[i].cod_a)
 			encontrado = true;
-		else
+			
+		else 
 			i++;
 	}
 	
 	if (encontrado)
 		return i;
-		
-	else 
+	else
 		return -1;
 }
-
 
 void Agregar_P()
 {
 	system("cls");
 	fflush(stdin);
 	cout<<"\tAGREGAR PROVEEDOR"<<endl<<endl;
-	cout<<"CÃ³digo de proveedor: ";
+	cout<<"Código de proveedor: ";
 	cin>>R;	
 	
 	int P = Buscar(R);	
@@ -439,9 +437,9 @@ void Agregar_P()
 		cin.getline(A_Proveedores[CP].nombre_p, 30, '\n');
 		cout<<"NIT: ";
 		cin.getline(A_Proveedores[CP].NIT_p, 10, '\n');
-		cout<<"DirecciÃ³n: ";
+		cout<<"Dirección: ";
 		cin.getline(A_Proveedores[CP].direccion_p, 40, '\n');	
-		cout<<"TelÃ©fono: ";
+		cout<<"Teléfono: ";
 		cin>>A_Proveedores[CP].telefono_p;
 
 		A_Proveedores[CP].eliminado_p = false;
@@ -453,7 +451,7 @@ void Agregar_P()
 	else 
 	{
 		system("cls");
-		cout<<"Proveedor ya existente.\nPor favor, intÃ©ntelo de nuevo."<<endl<<endl;
+		cout<<"Proveedor ya existente.\nPor favor, inténtelo de nuevo."<<endl<<endl;
 		getch();	
 	}	
 }
@@ -477,11 +475,11 @@ void Agregar_C()
 		cin.getline(A_Clientes[CC].nombre_c, 20, '\n');
 		cout<<"Apellido: ";
 		cin.getline(A_Clientes[CC].apellido_c, 15, '\n');
-		cout<<"DirecciÃ³n: ";
+		cout<<"Dirección: ";
 		cin.getline(A_Clientes[CC].direccion_c, 40, '\n');
 		cout<<"DPI: ";
 		cin>>A_Clientes[CC].DPI_c;	
-		cout<<"TelÃ©fono: ";
+		cout<<"Teléfono: ";
 		cin>>A_Clientes[CC].telefono_c;
 		cout<<"Edad: ";
 		cin>>A_Clientes[CC].edad_c;
@@ -495,118 +493,137 @@ void Agregar_C()
 	else 
 	{
 		system("cls");
-		cout<<"Cliente ya existente.\nPor favor, intÃ©ntelo de nuevo."<<endl<<endl;
+		cout<<"Cliente ya existente.\nPor favor, inténtelo de nuevo."<<endl<<endl;
 		getch();	
 	}
 }
 
 void Agregar_A()
 {
+	int OP5;
 	system("cls");
-	cout<<"\tAGREGAR ARTÃCULO"<<endl<<endl;
-	fflush(stdin);
-	cout<<"\nCÃ³digo: ";
-	cin>>R;
+	cout<<"\tAGREGAR ARTÍCULO"<<endl<<endl;
+	cout<<"1. Articulo nuevo"<<endl<<"2. Artículo existente"<<endl;
+	cin>>OP5;
 	
-	int P = Buscar(R);
-			
-	if (P==-1)
+	if (OP5==1)
 	{
-		strcpy(A_Articulos_b[CA].cod_a, R);
-		strcpy(A_Articulos_t[CA].cod_a, R);
+		fflush(stdin);
+		cout<<"\nCódigo de articulo: "<<CA;	
+		A_Articulos[CA].cod_a = CA;
 		fflush(stdin);
 		cout<<"\nNombre: ";
 		cin>>R;
-		
+			
 		int p = Buscar(R);
-		
+			
 		if (p==-1)
 		{
-			strcpy(A_Articulos_b[CA].nombre_a, R);			
-			strcpy(A_Articulos_t[CA].nombre_a, R);
+			strcpy(A_Articulos[CA].nombre_a, R);			
 			fflush(stdin);
-			cout<<"DescripciÃ³n: ";
-			cin.getline(A_Articulos_b[CA].descripcion_a, 80, '\n');
-			strcpy(A_Articulos_t[CA].descripcion_a, A_Articulos_b[CA].descripcion_a);
+			cout<<"Descripción: ";
+			cin.getline(A_Articulos[CA].descripcion_a, 80, '\n');
 			cout<<"Precio Unitario: Q. ";
-			cin>>A_Articulos_b[CA].pUnitario_a;
-			A_Articulos_t[CA].pUnitario_a = A_Articulos_b[CA].pUnitario_a;
-			cout<<"\nIngrese cÃ³digo de proveedor: ";
+			cin>>A_Articulos[CA].pUnitario_a;
+			cout<<"\nIngrese código de proveedor: ";
 			cin>>R;
 		
-			int b = BuscarP(R);
+			OP = 1;
+			int b = Buscar(R);
+			OP = 3;
 						
 			if (b==-1)
 			{
 				system("cls");
-				cout<<"Proveedor no existente.\nPor favor, intÃ©ntelo de nuevo.";
+				cout<<"Proveedor no existente.\nPor favor, inténtelo de nuevo.";
 				getch();
 			}
 			else
 			{
-				strcpy(A_Articulos_b[CA].codP_a, R);
-				strcpy(A_Articulos_t[CA].codP_a, R);
+				strcpy(A_Articulos[CA].codP_a, R);
 				cout<<"Cantidad: ";
 				cin>>c;
 				do
 				{
-					system("cls");
-					cout<<"\nÂ¿DÃ³nde desea almacenar el artÃ­culo?"<<endl<<endl;
+					cout<<"\n\n¿Dónde desea almacenar el artículo?"<<endl<<endl;
 					cout<<"1. Bodega"<<endl;
 					cout<<"2. Tienda"<<endl;
 					cin>>OP3;
-			
+				
 					if (OP3==1)
-						A_Articulos_b[CA].cantidad_a+=c;
-					
+						A_Articulos[CA].cantidad_a_B+=c;
+						
 					else if (OP3==2)
-						A_Articulos_t[CA].cantidad_a+=c;
-						
+						A_Articulos[CA].cantidad_a_T+=c;
+							
 					else 
-						cout<<endl<<"Porfavor, ingrese una opciÃ³n vÃ¡lida."<<endl;
-						
+						cout<<endl<<"Porfavor, ingrese una opción válida."<<endl;
+							
 				} while ((OP3!=1) && (OP3!=2));
 				CA++;
 				getch();
 			}			
+	
 		}
 		else 
 		{
 			system("cls");
 			cout<<"Nombre existente"<<endl;
-			cout<<"Nombre de articulo no coincide con cÃ³digo de articulo.\nPor favor, intÃ©ntelo de nuevo.";
+			cout<<"Nombre de articulo no coincide con código de articulo.\nPor favor, inténtelo de nuevo.";
 			getch();
 		}
 	}
-	else
+	
+	else if (OP5==2)
 	{
-		cout<<"Nombre del artÃ­culo: "<<A_Articulos_b[P].nombre_a<<endl;
-		cout<<"DescripciÃ³n: "<<A_Articulos_b[P].descripcion_a<<endl;
-		cout<<"Precio Unitario: "<<A_Articulos_b[P].pUnitario_a<<endl;
-		cout<<"CÃ³digo de proveedor: "<<A_Articulos_b[P].codP_a<<endl;
-		cout<<"\nIngrese cantidad a almacenar: ";
-		cin>>c;
+		int Cod;
+		fflush(stdin);
+		cout<<"\nIngrese código de articulo: ";
+		cin>>Cod;
+		
+		int P = Buscar2(Cod);
 				
-		do
+		if (P!=-1)
+		{
+			cout<<"\nNombre del artículo: "<<A_Articulos[P].nombre_a<<endl;
+			cout<<"Descripción: "<<A_Articulos[P].descripcion_a<<endl;
+			cout<<"Precio Unitario: Q. "<<A_Articulos[P].pUnitario_a<<endl;
+			cout<<"Código de proveedor: "<<A_Articulos[P].codP_a<<endl;
+			cout<<"\nIngrese cantidad a almacenar: ";
+			cin>>c;
+					
+			do
+			{
+				cout<<"\n¿Dónde desea almacenar el artículo?"<<endl<<endl;
+				cout<<"1. Bodega"<<endl;
+				cout<<"2. Tienda"<<endl;
+				cin>>OP3;
+			
+				if (OP3==1)
+					A_Articulos[P].cantidad_a_B+=c;
+					
+				else if (OP3==2)
+					A_Articulos[P].cantidad_a_T+=c;
+						
+				else 
+				{
+					cout<<endl<<"Porfavor, ingrese una opción válida."<<endl;
+					getch();	
+				}		
+			} while ((OP3!=1) && (OP3!=2));	
+			getch();
+		}
+		else if(P==-1)
 		{
 			system("cls");
-			cout<<"\nÂ¿DÃ³nde desea almacenar el artÃ­culo?"<<endl<<endl;
-			cout<<"1. Bodega"<<endl;
-			cout<<"2. Tienda"<<endl;
-			cin>>OP3;
-		
-			if (OP3==1)
-				A_Articulos_b[P].cantidad_a+=c;
-				
-			else if (OP3==2)
-				A_Articulos_t[P].cantidad_a+=c;
-					
-			else 
-			{
-				cout<<endl<<"Porfavor, ingrese una opciÃ³n vÃ¡lida."<<endl;
-				getch();	
-			}		
-		} while ((OP3!=1) && (OP3!=2));	
+			cout<<"Código de articulo no exitente.\nPor favor, inténtelo de nuevo";
+			getch();
+		}
+	}
+	else 
+	{
+		system("cls");
+		cout<<"Opción inválida";
 		getch();
 	}
 }
@@ -616,7 +633,7 @@ void Agregar_E()
 	system("cls");
 	cout<<"\tAGREGAR EMPLEADOS"<<endl<<endl;
 	fflush(stdin);
-	cout<<"CÃ³digo de empleado: ";
+	cout<<"Código de empleado: ";
 	cin>>R;	
 	
 	int P = Buscar(R);
@@ -632,7 +649,7 @@ void Agregar_E()
 		cin.getline(A_Empleados[CE].apellido_e, 20, '\n');	
 		cout<<"DPI: ";
 		cin>>A_Empleados[CE].DPI_e;
-		cout<<"TelÃ©fono: ";
+		cout<<"Teléfono: ";
 		cin>>A_Empleados[CE].telefono_e;
 		
 		A_Empleados[CE].eliminado_e = false;
@@ -644,7 +661,7 @@ void Agregar_E()
 	else 
 	{
 		system("cls");
-		cout<<"Empleado ya existente.\nPor favor, intÃ©ntelo de nuevo."<<endl;
+		cout<<"Empleado ya existente.\nPor favor, inténtelo de nuevo."<<endl;
 		getch();
 	}
 }
@@ -654,7 +671,7 @@ void Eliminar_P()
 	system("cls");
 	
 	cout<<"ELIMINAR PROVEEDOR"<<endl<<endl;
-	cout<<"Ingrese cÃ³digo del proveedor a eliminar: ";
+	cout<<"Ingrese código del proveedor a eliminar: ";
 	cin>>R;
 	
 	int P = Buscar(R);
@@ -702,7 +719,7 @@ void Eliminar_E()
 	system("cls");
 	
 	cout<<"ELIMINAR EMPLEADO"<<endl<<endl;
-	cout<<"Ingrese cÃ³digo de empleado: ";
+	cout<<"Ingrese código de empleado: ";
 	cin>>R;
 	
 	int P = Buscar(R);
@@ -725,7 +742,7 @@ void Modificar_P()
 	system("cls");
 	
 	cout<<"\tMODIFICAR PROVEEDOR"<<endl<<endl;
-	cout<<"Ingrese cÃ³digo del proveedor a modificar: ";
+	cout<<"Ingrese código del proveedor a modificar: ";
 	cin>>R;
 	
 	int P = Buscar(R);
@@ -738,7 +755,7 @@ void Modificar_P()
 	else 
 	{
 		cout<<"Ingrese los nuevos datos"<<endl<<endl;
-		cout<<"CÃ³digo del proveedor: ";
+		cout<<"Código del proveedor: ";
 		cin>>R;
 		
 		int p = Buscar(R);
@@ -751,15 +768,15 @@ void Modificar_P()
 			cin.getline(A_Proveedores[P].nombre_p, 30, '\n');
 			cout<<"NIT: ";
 			cin.getline(A_Proveedores[P].NIT_p, 10, '\n');
-			cout<<"DirecciÃ³n: ";
+			cout<<"Dirección: ";
 			cin.getline(A_Proveedores[P].direccion_p, 40, '\n');	
-			cout<<"TelÃ©fono: ";
+			cout<<"Teléfono: ";
 			cin>>A_Proveedores[P].telefono_p;			
 		}
 		
 		else
 		{
-			cout<<endl<<"Proveedor ya existente.\nPor favor, intÃ©ntelo de nuevo."<<endl;
+			cout<<endl<<"Proveedor ya existente.\nPor favor, inténtelo de nuevo."<<endl;
 			getch();
 		}
 	}
@@ -795,11 +812,11 @@ void Modificar_C()
 			cin.getline(A_Clientes[P].nombre_c, 20, '\n');
 			cout<<"Apellido: ";
 			cin.getline(A_Clientes[P].apellido_c, 15, '\n');
-			cout<<"DirecciÃ³n: ";
+			cout<<"Dirección: ";
 			cin.getline(A_Clientes[P].direccion_c, 40, '\n');
 			cout<<"DPI: ";
 			cin>>A_Clientes[P].DPI_c;
-			cout<<"TelÃ©fono: ";
+			cout<<"Teléfono: ";
 			cin>>A_Clientes[P].telefono_c;
 			cout<<"Edad: ";
 			cin>>A_Clientes[P].edad_c;		
@@ -807,7 +824,7 @@ void Modificar_C()
 		
 		else 
 		{
-			cout<<endl<<"Cliente ya existente, segÃºn NIT.\nPor favor, intÃ©ntelo de nuevo."<<endl;
+			cout<<endl<<"Cliente ya existente, según NIT.\nPor favor, inténtelo de nuevo."<<endl;
 			getch();
 		}
 	}
@@ -818,7 +835,7 @@ void Modificar_E()
 	system("cls");
 	
 	cout<<"\tMODIFICAR EMPLEADO"<<endl<<endl;
-	cout<<"Ingrese cÃ³digo de empleado a modificar: ";
+	cout<<"Ingrese código de empleado a modificar: ";
 	cin>>R;
 	
 	int P = Buscar(R);
@@ -832,7 +849,7 @@ void Modificar_E()
 	else
 	{
 		cout<<"\nIngrese los nuevos datos: "<<endl<<endl;
-		cout<<"CÃ³digo de empleado: ";
+		cout<<"Código de empleado: ";
 		cin>>R;
 		
 		int p = Buscar(R);
@@ -846,13 +863,13 @@ void Modificar_E()
 			cin.getline(A_Empleados[P].apellido_e, 20, '\n');	
 			cout<<"DPI: ";
 			cin>>A_Empleados[P].DPI_e;
-			cout<<"TelÃ©fono: ";
+			cout<<"Teléfono: ";
 			cin>>A_Empleados[P].telefono_e;		
 		}
 		
 		else 
 		{
-			cout<<endl<<"Empleado ya existente.\nPor favor, intÃ©ntelo de nuevo."<<endl;
+			cout<<endl<<"Empleado ya existente.\nPor favor, inténtelo de nuevo."<<endl;
 			getch();
 		}
 	}	
@@ -863,7 +880,7 @@ void Buscar_P()
 	system("cls");
 	
 	cout<<"BUSCAR PROVEEDOR"<<endl<<endl;
-	cout<<"Ingrese cÃ³digo de proveedor: ";
+	cout<<"Ingrese código de proveedor: ";
 	cin>>R;
 	
 	int P = Buscar(R);
@@ -877,11 +894,11 @@ void Buscar_P()
 	else
 	{
 		cout<<"Los datos del proveedor son: "<<endl<<endl;
-		cout<<"CÃ³digo No. "<<A_Proveedores[P].cod_p<<endl;
+		cout<<"Código No. "<<A_Proveedores[P].cod_p<<endl;
 		cout<<"Nombre: "<<A_Proveedores[P].nombre_p<<endl;
 		cout<<"NIT: "<<A_Proveedores[P].NIT_p<<endl;
-		cout<<"DirecciÃ³n: "<<A_Proveedores[P].direccion_p<<endl;
-		cout<<"TelÃ©fono: "<<A_Proveedores[P].telefono_p<<endl;
+		cout<<"Dirección: "<<A_Proveedores[P].direccion_p<<endl;
+		cout<<"Teléfono: "<<A_Proveedores[P].telefono_p<<endl;
 		getch();
 	}
 }
@@ -909,8 +926,8 @@ void Buscar_C()
 		cout<<"Apellido: "<<A_Clientes[P].apellido_c<<endl;
 		cout<<"DPI: "<<A_Clientes[P].DPI_c<<endl;
 		cout<<"NIT: "<<A_Clientes[P].NIT_c<<endl;
-		cout<<"DirecciÃ³n: "<<A_Clientes[P].direccion_c<<endl;
-		cout<<"TelÃ©fono: "<<A_Clientes[P].telefono_c<<endl;
+		cout<<"Dirección: "<<A_Clientes[P].direccion_c<<endl;
+		cout<<"Teléfono: "<<A_Clientes[P].telefono_c<<endl;
 		cout<<"Edad: "<<A_Clientes[P].edad_c<<endl;
 		getch();		
 	}
@@ -921,7 +938,7 @@ void Buscar_E()
 	system("cls");
 	
 	cout<<"BUSCAR EMPLEADO: "<<endl<<endl;
-	cout<<"Ingrese cÃ³digo de empleado: ";
+	cout<<"Ingrese código de empleado: ";
 	cin>>R;
 	
 	int P = Buscar(R);	
@@ -935,11 +952,11 @@ void Buscar_E()
 	else 
 	{
 		cout<<"\nLos datos del empleado son: "<<endl<<endl;
-		cout<<"CÃ³digo de empleado: "<<A_Empleados[P].cod_e<<endl;
+		cout<<"Código de empleado: "<<A_Empleados[P].cod_e<<endl;
 		cout<<"Nombre: "<<A_Empleados[P].nombre_e<<endl;
 		cout<<"Apellido: "<<A_Empleados[P].apellido_e<<endl;
 		cout<<"DPI: "<<A_Empleados[P].DPI_e<<endl;
-		cout<<"TelÃ©fono: "<<A_Empleados[P].telefono_e<<endl;
+		cout<<"Teléfono: "<<A_Empleados[P].telefono_e<<endl;
 		getch();		
 	}
 }
@@ -951,11 +968,11 @@ void Reportar_P()
 	
 	cout<<"\n\tREPORTE DE Proveedores"<<endl<<endl;
 	
-	gotoxy(0,3); cout<<"CÃ³digo Proveedor";
+	gotoxy(0,3); cout<<"Código Proveedor";
 	gotoxy(20,3); cout<<"Nombre";
 	gotoxy(55,3); cout<<"NIT";	
-	gotoxy(70,3); cout<<"TelÃ©fono";
-	gotoxy(85,3); cout<<"DirecciÃ³n";
+	gotoxy(70,3); cout<<"Teléfono";
+	gotoxy(85,3); cout<<"Dirección";
 	
 	for (int i=0; i<CP; i++)
 	{
@@ -983,9 +1000,9 @@ void Reportar_C()
 	gotoxy(20,3); cout<<"Apellido";
 	gotoxy(35,3); cout<<"DPI";
 	gotoxy(55,3); cout<<"NIT";
-	gotoxy(68,3); cout<<"TelÃ©fono";
+	gotoxy(68,3); cout<<"Teléfono";
 	gotoxy(80,3); cout<<"Edad";
-	gotoxy(86,3); cout<<"DirecciÃ³n";
+	gotoxy(86,3); cout<<"Dirección";
 	
 	
 	for (int i=0; i<CC; i++)
@@ -1012,11 +1029,11 @@ void Reportar_E()
 	
 	cout<<"\n\tREPORTE DE EMPLEADOS"<<endl<<endl;
 
-	gotoxy(0,3); cout<<"CÃ³digo Empleado";	
+	gotoxy(0,3); cout<<"Código Empleado";	
 	gotoxy(20,3); cout<<"Nombre";
 	gotoxy(45,3); cout<<"Apellido";
 	gotoxy(70,3); cout<<"DPI";
-	gotoxy(85,3); cout<<"TelÃ©fono";
+	gotoxy(85,3); cout<<"Teléfono";
 	
 	for (int i=0; i<CE; i++)
 	{
@@ -1035,85 +1052,88 @@ void Reportar_E()
 
 void Traslado_A()
 {
+	int OP4;
+	int Cod;
 	system("cls");
-	cout<<"\tTRASLADO DE ARTICULOS"<<endl<<endl;
+	cout<<"\tTRASLADO DE ARTICULOS"<<endl;
 	
-	cout<<"Ingrese cÃ³digo de artÃ­culo: ";
-	cin>>R;
+	cout<<"Ingrese código de artículo: ";
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
-	if (P==-1)
+	if ((P==-1) || (Cod==0))
 	{
 		system("cls");
-		cout<<"El artÃ­culo no existe. Por favor, intÃ©ntelo de nuevo.";
+		cout<<"El artículo no existe. Por favor, inténtelo de nuevo.";
 		getch();
 	}
 	else
 	{
-		cout<<"\n\nTraslado de "<<A_Articulos_t[P].nombre_a<<endl;
+		cout<<"\n\nTraslado de "<<A_Articulos[P].nombre_a<<endl<<endl;
 		cout<<"Cantidad existente: "<<endl;
-		cout<<"Tienda: "<<A_Articulos_t[P].cantidad_a<<endl<<"Bodega: "<<A_Articulos_b[P].cantidad_a<<endl<<endl;
+		cout<<"Tienda: "<<A_Articulos[P].cantidad_a_T<<endl<<"Bodega: "<<A_Articulos[P].cantidad_a_B<<endl<<endl;
 	
 		cout<<"\tTRASLADO "<<endl;
-		cout<<"1. De Bodega a Tienda"<<endl;
-		cout<<"2. De Tienda a Bodega"<<endl;
+		cout<<"1. Bodega a Tienda"<<endl;
+		cout<<"2. Tienda a Bodega"<<endl;
 		cout<<"Ingrese el traslado que desea realizar: ";
 		cin>>OP4;
 		
 		switch (OP4)
 		{
 			case 1:
-				cout<<"\nIngrese la cantidad a trasladar: ";
+				cout<<"\n\nIngrese la cantidad a trasladar: ";
 				cin>>c;
 				
-				if (A_Articulos_b[P].cantidad_a>=c)
+				if (A_Articulos[P].cantidad_a_B>=c)
 				{
-					A_Articulos_b[P].cantidad_a-=c;	
-					A_Articulos_t[P].cantidad_a+=c;	
+					A_Articulos[P].cantidad_a_B-=c;	
+					A_Articulos[P].cantidad_a_T+=c;	
 				}
-				else if (A_Articulos_b[P].cantidad_a<c)
+				else if (A_Articulos[P].cantidad_a_B<c)
 				{
 					system("cls");
-					cout<<"\nNo hay suficientes articulos existentes para realizar la transacciÃ³n"<<endl;
-					cout<<"Por favor, intÃ©ntelo de nuevo.";
+					cout<<"\nNo hay suficientes articulos existentes para realizar la transacción"<<endl;
+					cout<<"Por favor, inténtelo de nuevo.";
 					getch();
 				}
 				else if (c<=0)
 				{
 					system("cls");
-					cout<<"Cantidad invÃ¡lida.\nPor favor, intÃ©ntelo de nuevo.";
+					cout<<"Cantidad inválida.\nPor favor, inténtelo de nuevo.";
 					getch();
 				}
 			break;
 			case 2:	
-				cout<<"\nIngrese la cantidad a trasladar: ";
+				cout<<"\n\nIngrese la cantidad a trasladar: ";
 				cin>>c;
 				
-				if (A_Articulos_t[P].cantidad_a>=c)
+				if (A_Articulos[P].cantidad_a_T>=c)
 				{
-					A_Articulos_t[P].cantidad_a-=c;	
-					A_Articulos_b[P].cantidad_a+=c;	
+					A_Articulos[P].cantidad_a_T-=c;	
+					A_Articulos[P].cantidad_a_B+=c;	
 				}
-				else if (A_Articulos_t[P].cantidad_a<c)
+				else if (A_Articulos[P].cantidad_a_T<c)
 				{
 					system("cls");
-					cout<<"\nNo hay suficientes articulos existentes para realizar la transacciÃ³n"<<endl;
-					cout<<"Por favor, intÃ©ntelo de nuevo.";
+					cout<<"\nNo hay suficientes articulos existentes para realizar la transacción"<<endl;
+					cout<<"Por favor, inténtelo de nuevo.";
 					getch();
 				}
 				else if (c<=0)
 				{
 					system("cls");
-					cout<<"Cantidad invÃ¡lida.\nPor favor, intÃ©ntelo de nuevo.";
+					cout<<"Cantidad inválida.\nPor favor, inténtelo de nuevo.";
 					getch();
 				}
 			break;
 			default:
 				system("cls");
-				cout<<"OpciÃ³n invÃ¡lida.";
+				cout<<"Opción inválida.";
 				getch();
 			break;
 		}
+		getch();
 	}
 }
