@@ -11,7 +11,7 @@ using namespace std;
 //DECLARACION
 
 //Variables
-int OP, OP2, OP3, CP, CC, CA=1, CE, y=5, c;
+int OP, OP2, OP3, CP, CC, CA, CE, y=5, c, A=1;
 char R[20];
 
 //Estructuras
@@ -80,7 +80,6 @@ struct PROVEEDORES
 	char NIT_p[10];
 	char direccion_p[40];
 	int telefono_p;
-	bool eliminado_p;
 } A_Proveedores[50];
 
 struct CLIENTES
@@ -92,7 +91,6 @@ struct CLIENTES
 	char NIT_c[10];
 	int telefono_c;
 	int edad_c;
-	bool eliminado_c;
 } A_Clientes[50];
 
 struct ARTICULOS
@@ -104,7 +102,6 @@ struct ARTICULOS
 	int cantidad_a_B;
 	float pUnitario_a;
 	char codP_a[10];
-	bool eliminado_a;
 } A_Articulos[100];
 
 struct EMPLEADOS
@@ -114,7 +111,6 @@ struct EMPLEADOS
 	char apellido_e[20];
 	char DPI_e[15];
 	int telefono_e;
-	bool eliminado_e;
 } A_Empleados[50];
 
 //Menú y submenú
@@ -348,7 +344,7 @@ int Buscar(char R[20])
 	{
 		while (i<CP && !encontrado)
 		{
-			if ((strcmp(A_Proveedores[i].cod_p, R)==0) && (!A_Proveedores[i].eliminado_p))
+			if (strcmp(A_Proveedores[i].cod_p, R)==0)
 				encontrado = true;
 				
 			else
@@ -360,7 +356,7 @@ int Buscar(char R[20])
 	{
 		while (i<CC && !encontrado)
 		{
-			if ((strcmp(A_Clientes[i].NIT_c, R)==0) && (!A_Clientes[i].eliminado_c))
+			if (strcmp(A_Clientes[i].NIT_c, R)==0)
 				encontrado = true;
 				
 			else 
@@ -372,7 +368,7 @@ int Buscar(char R[20])
 	{
 		while (i<CA && !encontrado)
 		{
-			if ((strcmp(A_Articulos[i].nombre_a, R)==0) && (!A_Articulos[i].eliminado_a))
+			if (strcmp(A_Articulos[i].nombre_a, R)==0)
 				encontrado=true;
 			else 
 				i++;
@@ -383,7 +379,7 @@ int Buscar(char R[20])
 	{
 		while (i<CE && !encontrado)
 		{
-			if ((strcmp(A_Empleados[i].cod_e, R)==0) && (!A_Empleados[i].eliminado_e))
+			if (strcmp(A_Empleados[i].cod_e, R)==0)
 				encontrado = true;
 				
 			else 
@@ -441,8 +437,6 @@ void Agregar_P()
 		cin.getline(A_Proveedores[CP].direccion_p, 40, '\n');	
 		cout<<"Teléfono: ";
 		cin>>A_Proveedores[CP].telefono_p;
-
-		A_Proveedores[CP].eliminado_p = false;
 		
 		CP++;	
 		getch();		
@@ -484,8 +478,6 @@ void Agregar_C()
 		cout<<"Edad: ";
 		cin>>A_Clientes[CC].edad_c;
 		
-		A_Clientes[CC].eliminado_c = false;
-		
 		CC++;	
 		getch();		
 	}
@@ -509,8 +501,8 @@ void Agregar_A()
 	if (OP5==1)
 	{
 		fflush(stdin);
-		cout<<"\nCódigo de articulo: "<<CA;	
-		A_Articulos[CA].cod_a = CA;
+		cout<<"\nCódigo de articulo: "<<A;	
+		A_Articulos[CA].cod_a = A;
 		fflush(stdin);
 		cout<<"\nNombre: ";
 		cin>>R;
@@ -561,6 +553,7 @@ void Agregar_A()
 							
 				} while ((OP3!=1) && (OP3!=2));
 				CA++;
+				A++;
 				getch();
 			}			
 	
@@ -652,8 +645,6 @@ void Agregar_E()
 		cout<<"Teléfono: ";
 		cin>>A_Empleados[CE].telefono_e;
 		
-		A_Empleados[CE].eliminado_e = false;
-		
 		CE++;	
 		getch();
 	}
@@ -684,7 +675,16 @@ void Eliminar_P()
 	
 	else 
 	{
-		A_Proveedores[P].eliminado_p = true;
+		while (P<CP)
+		{
+			strcpy(A_Proveedores[P].cod_p, A_Proveedores[P+1].cod_p);
+			strcpy(A_Proveedores[P].direccion_p, A_Proveedores[P+1].direccion_p);
+			strcpy(A_Proveedores[P].NIT_p, A_Proveedores[P+1].NIT_p);
+			strcpy(A_Proveedores[P].nombre_p, A_Proveedores[P+1].nombre_p);
+			A_Proveedores[P].telefono_p=A_Proveedores[P+1].telefono_p;
+			P++;
+		}
+		CP--;
 		cout<<"\nProveedor eliminado."<<endl<<endl;
 		getch();
 	}
@@ -708,7 +708,18 @@ void Eliminar_C()
 	
 	else 
 	{
-		A_Clientes[P].eliminado_c = true;
+		while (P<CC)
+		{
+			strcpy(A_Clientes[P].apellido_c, A_Clientes[P+1].apellido_c);
+			strcpy(A_Clientes[P].direccion_c, A_Clientes[P+1].direccion_c);
+			strcpy(A_Clientes[P].NIT_c, A_Clientes[P+1].NIT_c);
+			strcpy(A_Clientes[P].DPI_c, A_Clientes[P+1].DPI_c);
+			strcpy(A_Clientes[P].nombre_c, A_Clientes[P+1].nombre_c);
+			A_Clientes[P].telefono_c = A_Clientes[P+1].telefono_c;
+			A_Clientes[P].edad_c = A_Clientes[P+1].edad_c;
+			P++;
+		}
+		CC--;
 		cout<<"\nCliente eliminado."<<endl<<endl;
 		getch();
 	}
@@ -731,7 +742,16 @@ void Eliminar_E()
 	}
 	else 
 	{
-		A_Empleados[P].eliminado_e = true;
+		while (P<CE)
+		{
+			strcpy(A_Empleados[P].apellido_e, A_Empleados[P+1].apellido_e);
+			strcpy(A_Empleados[P].cod_e, A_Empleados[P+1].cod_e);
+			strcpy(A_Empleados[P].DPI_e, A_Empleados[P+1].DPI_e);
+			strcpy(A_Empleados[P].nombre_e, A_Empleados[P+1].nombre_e);
+			A_Empleados[P].telefono_e = A_Empleados[P+1].telefono_e;
+			P++;
+		}
+		CE--;
 		cout<<"\nEmpleado eliminado."<<endl<<endl;
 		getch();
 	}
@@ -976,15 +996,12 @@ void Reportar_P()
 	
 	for (int i=0; i<CP; i++)
 	{
-		if (!A_Proveedores[i].eliminado_p)
-		{
-			gotoxy(0,y); cout<<A_Proveedores[i].cod_p;
-			gotoxy(20,y); cout<<A_Proveedores[i].nombre_p;
-			gotoxy(55,y); cout<<A_Proveedores[i].NIT_p;
-			gotoxy(70,y); cout<<A_Proveedores[i].telefono_p;
-			gotoxy(85,y); cout<<A_Proveedores[i].direccion_p<<endl;
-			y++;	
-		}
+		gotoxy(0,y); cout<<A_Proveedores[i].cod_p;
+		gotoxy(20,y); cout<<A_Proveedores[i].nombre_p;
+		gotoxy(55,y); cout<<A_Proveedores[i].NIT_p;
+		gotoxy(70,y); cout<<A_Proveedores[i].telefono_p;
+		gotoxy(85,y); cout<<A_Proveedores[i].direccion_p<<endl;
+		y++;	
 	}
 	getch();	
 }
@@ -1007,17 +1024,14 @@ void Reportar_C()
 	
 	for (int i=0; i<CC; i++)
 	{
-		if (!A_Clientes[i].eliminado_c)
-		{
-			gotoxy(0,y); cout<<A_Clientes[i].nombre_c;
-			gotoxy(20,y); cout<<A_Clientes[i].apellido_c;
-			gotoxy(35,y); cout<<A_Clientes[i].DPI_c;
-			gotoxy(55,y); cout<<A_Clientes[i].NIT_c;
-			gotoxy(68,y); cout<<A_Clientes[i].telefono_c;
-			gotoxy(80,y); cout<<A_Clientes[i].edad_c<<endl;
-			gotoxy(86,y); cout<<A_Clientes[i].direccion_c;
-			y++;	
-		}
+		gotoxy(0,y); cout<<A_Clientes[i].nombre_c;
+		gotoxy(20,y); cout<<A_Clientes[i].apellido_c;
+		gotoxy(35,y); cout<<A_Clientes[i].DPI_c;
+		gotoxy(55,y); cout<<A_Clientes[i].NIT_c;
+		gotoxy(68,y); cout<<A_Clientes[i].telefono_c;
+		gotoxy(80,y); cout<<A_Clientes[i].edad_c<<endl;
+		gotoxy(86,y); cout<<A_Clientes[i].direccion_c;
+		y++;	
 	}
 	getch();
 }
@@ -1037,15 +1051,12 @@ void Reportar_E()
 	
 	for (int i=0; i<CE; i++)
 	{
-		if (!A_Empleados[i].eliminado_e)
-		{
-			gotoxy(0,y); cout<<A_Empleados[i].cod_e;
-			gotoxy(20,y); cout<<A_Empleados[i].nombre_e;
-			gotoxy(45,y); cout<<A_Empleados[i].apellido_e;
-			gotoxy(70,y); cout<<A_Empleados[i].DPI_e;
-			gotoxy(85,y); cout<<A_Empleados[i].telefono_e;
-			y++;	
-		}
+		gotoxy(0,y); cout<<A_Empleados[i].cod_e;
+		gotoxy(20,y); cout<<A_Empleados[i].nombre_e;
+		gotoxy(45,y); cout<<A_Empleados[i].apellido_e;
+		gotoxy(70,y); cout<<A_Empleados[i].DPI_e;
+		gotoxy(85,y); cout<<A_Empleados[i].telefono_e;
+		y++;	
 	}
 	getch();	
 }
@@ -1062,7 +1073,7 @@ void Traslado_A()
 	
 	int P = Buscar2(Cod);
 	
-	if ((P==-1) || (Cod==0))
+	if (P==-1)
 	{
 		system("cls");
 		cout<<"El artículo no existe. Por favor, inténtelo de nuevo.";
