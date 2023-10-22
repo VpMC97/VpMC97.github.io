@@ -8,11 +8,12 @@
 
 using namespace std;
 
-//DECLARACION
+//DECLARACIÓN
 
 //Variables
-int OP, OP2, OP3, CP, CC, CA, CE, y=5, c, A=1;
+int OP, OP2, OP3, CP, CC, CA, CE, y=5, c, Cod, ca=1, cp=1, ce=1;
 char R[20];
+char M[15];
 
 //Estructuras
 struct CLIENTES;
@@ -21,7 +22,8 @@ struct ARTICULOS;
 struct PROVEEDORES;
 
 //Funciones
-int Buscar(int R);
+int Buscar(char R);
+int Buscar2(int Cod);
 
 //Procedimientos
 void Menu();
@@ -75,7 +77,7 @@ int main()
 //ESTRUCTURAS
 struct PROVEEDORES
 {
-	char cod_p[10];
+	int cod_p;
 	char nombre_p[30];
 	char NIT_p[10];
 	char direccion_p[40];
@@ -106,7 +108,7 @@ struct ARTICULOS
 
 struct EMPLEADOS
 {
-	char cod_e[10];
+	int cod_e;
 	char nombre_e[20];
 	char apellido_e[20];
 	char DPI_e[15];
@@ -344,7 +346,7 @@ int Buscar(char R[20])
 	{
 		while (i<CP && !encontrado)
 		{
-			if (strcmp(A_Proveedores[i].cod_p, R)==0)
+			if (strcmp(A_Proveedores[i].NIT_p, R)==0)
 				encontrado = true;
 				
 			else
@@ -379,7 +381,7 @@ int Buscar(char R[20])
 	{
 		while (i<CE && !encontrado)
 		{
-			if (strcmp(A_Empleados[i].cod_e, R)==0)
+			if (strcmp(A_Empleados[i].DPI_e, R)==0)
 				encontrado = true;
 				
 			else 
@@ -399,15 +401,41 @@ int Buscar2(int Cod)
 	bool encontrado = false;
 	int i=0;
 	
-	while (i<CA && !encontrado)
+	if (OP==1)
 	{
-		if (Cod==A_Articulos[i].cod_a)
-			encontrado = true;
-			
-		else 
-			i++;
+		while (i<CP && !encontrado)
+		{
+			if (Cod==A_Proveedores[i].cod_p)
+				encontrado = true;
+			else
+				i++;
+		}
 	}
 	
+	if (OP==3)
+	{
+		while (i<CA && !encontrado)
+		{
+			if (Cod==A_Articulos[i].cod_a)
+				encontrado = true;
+				
+			else 
+				i++;
+		}		
+	}
+	
+	if (OP==4)
+	{
+		while (i<CE && !encontrado)
+		{
+			if (Cod==A_Empleados[i].cod_e)
+				encontrado = true;
+			
+			else
+				i++;
+		}
+	}
+
 	if (encontrado)
 		return i;
 	else
@@ -418,27 +446,31 @@ void Agregar_P()
 {
 	system("cls");
 	fflush(stdin);
-	cout<<"\tAGREGAR PROVEEDOR"<<endl<<endl;
-	cout<<"Código de proveedor: ";
-	cin>>R;	
+	cout<<" ------------------------------ AGREGAR PROVEEDOR ------------------------------ "<<endl<<endl;
+	cout<<"Código de proveedor "<<cp<<endl;
 	
-	int P = Buscar(R);	
+	A_Proveedores[CP].cod_p = cp;	
 	
-	if (P == -1)
+	fflush(stdin);
+	cout<<endl<<"NIT: ";
+	cin>>R;
+	
+	int P = Buscar(R);
+	
+	if (P==-1)
 	{
-		strcpy(A_Proveedores[CP].cod_p, R);
-		
+		strcpy(A_Proveedores[CP].NIT_p, R);
+
 		fflush(stdin);
 		cout<<"Nombre: ";
 		cin.getline(A_Proveedores[CP].nombre_p, 30, '\n');
-		cout<<"NIT: ";
-		cin.getline(A_Proveedores[CP].NIT_p, 10, '\n');
 		cout<<"Dirección: ";
 		cin.getline(A_Proveedores[CP].direccion_p, 40, '\n');	
 		cout<<"Teléfono: ";
 		cin>>A_Proveedores[CP].telefono_p;
-		
-		CP++;	
+	
+		CP++;
+		cp++;	
 		getch();		
 	}
 
@@ -454,7 +486,7 @@ void Agregar_C()
 {		
 	system("cls");
 	fflush(stdin);
-	cout<<"\tAGREGAR CLIENTES"<<endl<<endl;
+	cout<<" ------------------------------ AGREGAR CLIENTES ------------------------------ "<<endl<<endl;
 	cout<<"NIT: ";
 	cin>>R;	
 	
@@ -494,15 +526,15 @@ void Agregar_A()
 {
 	int OP5;
 	system("cls");
-	cout<<"\tAGREGAR ARTÍCULO"<<endl<<endl;
+	cout<<" ------------------------------ AGREGAR ARTÍCULO ------------------------------ "<<endl<<endl;
 	cout<<"1. Articulo nuevo"<<endl<<"2. Artículo existente"<<endl;
 	cin>>OP5;
 	
 	if (OP5==1)
 	{
 		fflush(stdin);
-		cout<<"\nCódigo de articulo: "<<A;	
-		A_Articulos[CA].cod_a = A;
+		cout<<"\nCódigo de articulo: "<<ca;	
+		A_Articulos[CA].cod_a = ca;
 		fflush(stdin);
 		cout<<"\nNombre: ";
 		cin>>R;
@@ -553,7 +585,7 @@ void Agregar_A()
 							
 				} while ((OP3!=1) && (OP3!=2));
 				CA++;
-				A++;
+				ca++;
 				getch();
 			}			
 	
@@ -569,7 +601,6 @@ void Agregar_A()
 	
 	else if (OP5==2)
 	{
-		int Cod;
 		fflush(stdin);
 		cout<<"\nIngrese código de articulo: ";
 		cin>>Cod;
@@ -624,28 +655,29 @@ void Agregar_A()
 void Agregar_E()
 {	
 	system("cls");
-	cout<<"\tAGREGAR EMPLEADOS"<<endl<<endl;
+	cout<<" ------------------------------ AGREGAR EMPLEADOS ------------------------------ "<<endl<<endl;
 	fflush(stdin);
-	cout<<"Código de empleado: ";
-	cin>>R;	
+	cout<<"Código de empleado: "<<ce<<endl;
+	A_Empleados[CE].cod_e = ce;
+	
+	cout<<endl<<"DPI: ";
+	cin>>R;
 	
 	int P = Buscar(R);
 	
 	if (P==-1)
 	{
-		strcpy(A_Empleados[CE].cod_e, R);
-		
+		strcpy(A_Empleados[CE].DPI_e, R);
 		fflush(stdin);
 		cout<<"Nombre: ";
 		cin.getline(A_Empleados[CE].nombre_e, 20, '\n');
 		cout<<"Apellido: ";
 		cin.getline(A_Empleados[CE].apellido_e, 20, '\n');	
-		cout<<"DPI: ";
-		cin>>A_Empleados[CE].DPI_e;
 		cout<<"Teléfono: ";
 		cin>>A_Empleados[CE].telefono_e;
 		
-		CE++;	
+		CE++;
+		ce++;	
 		getch();
 	}
 	
@@ -661,11 +693,11 @@ void Eliminar_P()
 {
 	system("cls");
 	
-	cout<<"ELIMINAR PROVEEDOR"<<endl<<endl;
+	cout<<" ------------------------------ ELIMINAR PROVEEDOR ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código del proveedor a eliminar: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
 	if (P == -1)
 	{
@@ -677,7 +709,7 @@ void Eliminar_P()
 	{
 		while (P<CP)
 		{
-			strcpy(A_Proveedores[P].cod_p, A_Proveedores[P+1].cod_p);
+			A_Proveedores[P].cod_p = A_Proveedores[P+1].cod_p;
 			strcpy(A_Proveedores[P].direccion_p, A_Proveedores[P+1].direccion_p);
 			strcpy(A_Proveedores[P].NIT_p, A_Proveedores[P+1].NIT_p);
 			strcpy(A_Proveedores[P].nombre_p, A_Proveedores[P+1].nombre_p);
@@ -694,7 +726,7 @@ void Eliminar_C()
 {
 	system("cls");
 	
-	cout<<"ELIMINAR CLIENTE"<<endl<<endl;
+	cout<<" ------------------------------ ELIMINAR CLIENTE ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese NIT del cliente a eliminar: ";
 	cin>>R;
 	
@@ -729,11 +761,11 @@ void Eliminar_E()
 {
 	system("cls");
 	
-	cout<<"ELIMINAR EMPLEADO"<<endl<<endl;
+	cout<<" ------------------------------ ELIMINAR EMPLEADO ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código de empleado: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
 	if (P == -1)
 	{
@@ -745,7 +777,7 @@ void Eliminar_E()
 		while (P<CE)
 		{
 			strcpy(A_Empleados[P].apellido_e, A_Empleados[P+1].apellido_e);
-			strcpy(A_Empleados[P].cod_e, A_Empleados[P+1].cod_e);
+			A_Empleados[P].cod_e = A_Empleados[P+1].cod_e;
 			strcpy(A_Empleados[P].DPI_e, A_Empleados[P+1].DPI_e);
 			strcpy(A_Empleados[P].nombre_e, A_Empleados[P+1].nombre_e);
 			A_Empleados[P].telefono_e = A_Empleados[P+1].telefono_e;
@@ -761,11 +793,11 @@ void Modificar_P()
 {
 	system("cls");
 	
-	cout<<"\tMODIFICAR PROVEEDOR"<<endl<<endl;
+	cout<<" ------------------------------ MODIFICAR PROVEEDOR ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código del proveedor a modificar: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
 	if (P == -1)
 	{
@@ -774,29 +806,32 @@ void Modificar_P()
 	}
 	else 
 	{
-		cout<<"Ingrese los nuevos datos"<<endl<<endl;
-		cout<<"Código del proveedor: ";
+		cout<<endl<<endl<<"Ingrese los nuevos datos"<<endl<<endl;
+		cout<<"Código del proveedor: "<<A_Proveedores[P].cod_p<<endl;
+		fflush(stdin);
+		cout<<"NIT: ";
 		cin>>R;
-		
+
+		strcpy(M, A_Proveedores[P].NIT_p);
+		strcpy(A_Proveedores[P].NIT_p, A_Proveedores[CP].NIT_p);
 		int p = Buscar(R);
 		
 		if (p == -1)
 		{
-			strcpy(A_Proveedores[P].cod_p, R);
+			strcpy(A_Proveedores[P].NIT_p, R);
 			fflush(stdin);
 			cout<<"Nombre: ";
 			cin.getline(A_Proveedores[P].nombre_p, 30, '\n');
-			cout<<"NIT: ";
-			cin.getline(A_Proveedores[P].NIT_p, 10, '\n');
 			cout<<"Dirección: ";
 			cin.getline(A_Proveedores[P].direccion_p, 40, '\n');	
 			cout<<"Teléfono: ";
 			cin>>A_Proveedores[P].telefono_p;			
-		}
-		
+		}	
+	
 		else
 		{
-			cout<<endl<<"Proveedor ya existente.\nPor favor, inténtelo de nuevo."<<endl;
+			strcpy(A_Proveedores[P].NIT_p, M);
+			cout<<endl<<"Proveedor ya existente.\nPor favor, inténtelo de nuevo.";
 			getch();
 		}
 	}
@@ -806,7 +841,7 @@ void Modificar_C()
 {
 	system("cls");
 	
-	cout<<"\tMODIFICAR CLIENTE"<<endl<<endl;
+	cout<<" ------------------------------ MODIFICAR CLIENTE ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese NIT del cliente a modificar: ";
 	cin>>R;
 	
@@ -854,11 +889,11 @@ void Modificar_E()
 {
 	system("cls");
 	
-	cout<<"\tMODIFICAR EMPLEADO"<<endl<<endl;
+	cout<<" ------------------------------ MODIFICAR EMPLEADO ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código de empleado a modificar: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
 	if (P == -1)
 	{
@@ -869,26 +904,29 @@ void Modificar_E()
 	else
 	{
 		cout<<"\nIngrese los nuevos datos: "<<endl<<endl;
-		cout<<"Código de empleado: ";
+		cout<<"Código de empleado: "<<A_Empleados[P].cod_e<<endl;
+		cout<<"DPI: ";
 		cin>>R;
 		
+		strcpy(M, A_Empleados[P].DPI_e);
+		strcpy(A_Empleados[P].DPI_e, A_Empleados[CP].DPI_e);
 		int p = Buscar(R);
+		
 		if (p == -1)
 		{
-			strcpy(A_Empleados[P].cod_e, R);
+			strcpy(A_Empleados[P].DPI_e, R);
 			fflush(stdin);
 			cout<<"Nombre: ";
 			cin.getline(A_Empleados[P].nombre_e, 20, '\n');
 			cout<<"Apellido: ";
 			cin.getline(A_Empleados[P].apellido_e, 20, '\n');	
-			cout<<"DPI: ";
-			cin>>A_Empleados[P].DPI_e;
 			cout<<"Teléfono: ";
 			cin>>A_Empleados[P].telefono_e;		
 		}
 		
 		else 
 		{
+			strcpy(A_Empleados[P].DPI_e, M);
 			cout<<endl<<"Empleado ya existente.\nPor favor, inténtelo de nuevo."<<endl;
 			getch();
 		}
@@ -899,21 +937,21 @@ void Buscar_P()
 {
 	system("cls");
 	
-	cout<<"BUSCAR PROVEEDOR"<<endl<<endl;
+	cout<<" ------------------------------ BUSCAR PROVEEDOR ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código de proveedor: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);
+	int P = Buscar2(Cod);
 	
 	if (P == -1)
 	{
-		cout<<"Proveedor no encontrado";
+		cout<<"\nProveedor no encontrado";
 		getch();
 	}
 	
 	else
 	{
-		cout<<"Los datos del proveedor son: "<<endl<<endl;
+		cout<<endl<<"Los datos del proveedor son: "<<endl<<endl;
 		cout<<"Código No. "<<A_Proveedores[P].cod_p<<endl;
 		cout<<"Nombre: "<<A_Proveedores[P].nombre_p<<endl;
 		cout<<"NIT: "<<A_Proveedores[P].NIT_p<<endl;
@@ -927,7 +965,7 @@ void Buscar_C()
 {
 	system("cls");
 	
-	cout<<"BUSCAR CLIENTE: "<<endl<<endl;
+	cout<<" ------------------------------ BUSCAR CLIENTE ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese No. NIT del cliente: ";
 	cin>>R;
 	
@@ -957,11 +995,11 @@ void Buscar_E()
 {
 	system("cls");
 	
-	cout<<"BUSCAR EMPLEADO: "<<endl<<endl;
+	cout<<" ------------------------------ BUSCAR EMPLEADO ------------------------------ "<<endl<<endl;
 	cout<<"Ingrese código de empleado: ";
-	cin>>R;
+	cin>>Cod;
 	
-	int P = Buscar(R);	
+	int P = Buscar2(Cod);	
 	
 	if (P == -1)
 	{
@@ -986,7 +1024,7 @@ void Reportar_P()
 	y = 5;
 	system("cls");
 	
-	cout<<"\n\tREPORTE DE Proveedores"<<endl<<endl;
+	cout<<"\n ------------- REPORTE DE PROVEEDORES ------------- "<<endl<<endl;
 	
 	gotoxy(0,3); cout<<"Código Proveedor";
 	gotoxy(20,3); cout<<"Nombre";
@@ -1011,7 +1049,7 @@ void Reportar_C()
 	y = 5;
 	system("cls");
 	
-	cout<<"\n\tREPORTE DE CLIENTES"<<endl<<endl;
+	cout<<"\n ------------- REPORTE DE CLIENTES ------------- "<<endl<<endl;
 	
 	gotoxy(0,3); cout<<"Nombre";
 	gotoxy(20,3); cout<<"Apellido";
@@ -1041,7 +1079,7 @@ void Reportar_E()
 	y = 5;
 	system("cls");
 	
-	cout<<"\n\tREPORTE DE EMPLEADOS"<<endl<<endl;
+	cout<<"\n ------------- REPORTE DE EMPLEADOS ------------- "<<endl<<endl;
 
 	gotoxy(0,3); cout<<"Código Empleado";	
 	gotoxy(20,3); cout<<"Nombre";
@@ -1066,7 +1104,7 @@ void Traslado_A()
 	int OP4;
 	int Cod;
 	system("cls");
-	cout<<"\tTRASLADO DE ARTICULOS"<<endl;
+	cout<<" ------------- TRASLADO DE ARTICULOS ------------- "<<endl;
 	
 	cout<<"Ingrese código de artículo: ";
 	cin>>Cod;
