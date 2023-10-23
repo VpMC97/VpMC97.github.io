@@ -103,7 +103,7 @@ struct ARTICULOS
 	int cantidad_a_T;
 	int cantidad_a_B;
 	float pUnitario_a;
-	char codP_a[10];
+	int codP_a;
 } A_Articulos[100];
 
 struct EMPLEADOS
@@ -550,10 +550,10 @@ void Agregar_A()
 			cout<<"Precio Unitario: Q. ";
 			cin>>A_Articulos[CA].pUnitario_a;
 			cout<<"\nIngrese código de proveedor: ";
-			cin>>R;
+			cin>>Cod;
 		
 			OP = 1;
-			int b = Buscar(R);
+			int b = Buscar2(Cod);
 			OP = 3;
 						
 			if (b==-1)
@@ -564,7 +564,7 @@ void Agregar_A()
 			}
 			else
 			{
-				strcpy(A_Articulos[CA].codP_a, R);
+				A_Articulos[CA].codP_a = Cod;
 				cout<<"Cantidad: ";
 				cin>>c;
 				do
