@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: none;
+  box-sizing: border-box;
+  transition: 0.2s linear;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+section {
+  padding: 5rem 9%;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 4rem;
+  color: #101422;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 9%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  margin-right: auto;
+  font-size: 3rem;
+  color: black;
+  font-weight: bolder;
+}
+
+.header .navbar a {
+  margin-left: 2rem;
+  font-size: 1.7rem;
+  color: black;
+}
+.header .navbar a:hover {
+  color: rgb(1, 75, 160);
+}
+
+.header .icons a,
+.header .icons div {
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  color: black;
+}
+
+i {
+  color: rgb(1, 75, 160);
+}
+
+.Inicio {
+  padding: 0;
+}
+.Inicio .box {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: rgb(230, 240, 255);
+  justify-content: flex-end;
+  padding: 8rem 10%;
+}
+
+.Inicio .content {
+  width: 50rem;
+}
+.Inicio .content span {
+  font-size: 4rem;
+  color: rgb(4, 4, 66);
+  font-weight: bold;
+}
+.Inicio .content h3 {
+  font-size: 6rem;
+  color:  rgb(1, 75, 160);
+  padding-top: 0.5rem;
+}
+.Inicio .content p {
+  line-height: 2;
+  color: black;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+}
+
+.Inicio .wrapper .box img {
+    display: flex;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    height: 40rem;
+    width: 55rem;
+}
+
+.struct p {
+  font-size: 1.5rem;
+  color: #00104b;
+  padding: 1rem 0;
+  line-height: 2;
+  text-align: justify;
+}
+.struct .contenido {
+  display: flex;
+}
+.struct .contenido .box {
+  position: relative;
+  display: flex;
+  left: 50px;
+  width: 57rem;
+}
+
+.struct img {
+  display: flex;
+  height: 30rem;
+  width: 40rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  box-shadow: 2px 3px 7px 4px rgb(179, 198, 225);
+}
+
+table.content {
+  border-collapse: collapse;
+  margin: 32px 0;
+  min-width: 500px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  position: relative;
+  left: 75px;
+}
+
+
+table.content thead tr, 
+table.content caption {
+  padding: 12px 16px;
+  font-size: 20px;
+  background-color: rgb(8, 0, 121);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+table.content th,
+table.content td{
+  padding: 12px 16px;
+  font-size: 12px;
+}
+
+table.content tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+table.content tbody tr:last-of-type {
+  border-bottom: 2px solid rgb(8, 0, 121);
+}
+
+.ramas {
+  background: #eee;
+}
+
+.ramas p {
+  font-size: 1.5rem;
+  color: #101422;
+  padding: 1rem 0;
+  line-height: 2;
+}
+
+.ramas .box-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(33rem, 33rem)) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(33rem, 33rem));
+  gap: 2rem;
+}
+.ramas .box-container .box {
+  text-align: center;
+  border: 0.2rem solid rgba(20, 42, 116, 0.703);
+  background: #fff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.ramas .box-container .box .btn {
+  margin-top: 1rem;
+  display: inline-block;
+  border: 0.2rem solid rgba(20, 42, 116, 0.703);
+  color: black;
+  cursor: pointer;
+  background: none;
+  font-size: 1.7rem;
+  padding: 1rem 3rem;
+  border-radius: 40px;
+}
+
+.ramas .box-container .box:hover .btn:hover {
+  background:rgba(20, 42, 116, 0.703);
+  color:#fff;
+}
+
+.ramas .box-container .box .image {
+  height: 17rem;
+  overflow: hidden;
+}
+.ramas .box-container .box .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.ramas .box-container .box .content {
+  padding: 2rem;
+}
+.ramas .box-container .box .content h3 {
+  font-size: 1.7rem;
+  color: #101422;
+}
+.ramas .box-container .box .content p {
+  font-size: 1.1rem;
+  color: #101422;
+  padding: 1rem 0;
+  line-height: 2;
+  text-align: justify;
+}
+
+.footer {
+  background: linear-gradient(rgba(0, 0, 0, 0.082), rgba(0, 0, 0, 0.087)), url(images/footer.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.footer .box-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(25rem, 1fr)) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+audio{
+  width: 500px;
+  background-color:#00104b;
+  border: 4px solid #00104b;
+  border-radius: 30%;
+
+}
+
+.footer .box-container .box h3 {
+  font-size: 2rem;
+  padding: 1.5rem 0;
+  color: #fff;
+}
+
+.footer .box-container .box h1 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* AJUSTAR LA PANTALLA EN DISPOSITIVO MÓVIL*/
+@media screen and (max-width:600px){
+    .section, .div {
+        width: 100%;
+    }
+}
