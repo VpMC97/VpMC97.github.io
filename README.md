@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Isa</h1>
 <h3 align="center">I'm an Information Systems Engineering and Computer Science Student, passionate about the world of development</h3>
 
-- 🔭 I’m currently working on updating my portfolio
+- 🔭 I’m currently working on updating my <a href="https://vpmc97.github.io/" target="_blank" rel="noreferrer">portfolio</a>
 
 - 🌱 I’m currently learning **about web development**
 
