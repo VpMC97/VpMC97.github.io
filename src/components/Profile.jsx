@@ -14,7 +14,7 @@ const Profile = () => {
     return (
         <section id="about" className="profile__wrapper">
             <div className="profile__img-container">
-                <img src="https://github.com/VpMC97/VpMC97.github.io/main/src/images/profile.png" alt="su" className="profile__img" />
+                <img src="/images/profile.png" alt="su" className="profile__img" />
             </div>
             <div className="profile__title">
                 <h2 className="profile__title-subtitle">

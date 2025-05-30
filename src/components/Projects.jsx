@@ -4,25 +4,25 @@ import './Projects.css';
 const projectsData = [
     {
         title: "Calculator",
-        image: "../../src/images/calculator.png",
+        image: "/images/calculator.png",
         description: "Simple calculator made with HTML, CSS and JS",
         link: "https://github.com/VpMC97/calculadora"
     },
     {
         title: "School Web Page",
-        image: "src/images/school.png",
+        image: "/images/school.png",
         description: "Web Page for a kindergarden school made with HTML, CSS and JS",
         link: "https://github.com/VpMC97/School-Page"
     },
     {
         title: "Neuroscience page",
-        image: "./src/images/brain.png",
+        image: "/images/brain.png",
         description: "Information web about Neuroscience",
         link: "https://github.com/VpMC97/neuroscience-web-page"
     },
     {
         title: "Billing System",
-        image: "./src/images/bank.png",
+        image: "/images/bank.png",
         description: "CRUD for a billing system with Java and SQLServer",
         link: "https://github.com/VpMC97/Billing-System-Java-DB"
     }
