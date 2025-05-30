@@ -4,13 +4,13 @@ import './Projects.css';
 const projectsData = [
     {
         title: "Calculator",
-        image: "./src/images/calculator.png",
+        image: "../../src/images/calculator.png",
         description: "Simple calculator made with HTML, CSS and JS",
         link: "https://github.com/VpMC97/calculadora"
     },
     {
         title: "School Web Page",
-        image: "./src/images/school.png",
+        image: "src/images/school.png",
         description: "Web Page for a kindergarden school made with HTML, CSS and JS",
         link: "https://github.com/VpMC97/School-Page"
     },
