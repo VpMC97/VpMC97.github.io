@@ -4,7 +4,7 @@ import './Profile.css';
 const Profile = () => {
     const downloadResume = () => {
         const link = document.createElement('a');
-        link.href = 'Viviana_Mendez-Resume.pdf';
+        link.href = import.meta.env.BASE_URL + 'Viviana_Mendez-Resume.pdf';
         link.download = 'Viviana_Mendez-Resume.pdf';
         document.body.appendChild(link);
         link.click();
@@ -14,7 +14,7 @@ const Profile = () => {
     return (
         <section id="about" className="profile__wrapper">
             <div className="profile__img-container">
-                <img src="https://github.com/VpMC97/VpMC97.github.io/blob/main/src/images/profile.png" alt="su" className="profile__img" />
+                <img src="https://github.com/VpMC97/VpMC97.github.io/main/src/images/profile.png" alt="su" className="profile__img" />
             </div>
             <div className="profile__title">
                 <h2 className="profile__title-subtitle">
