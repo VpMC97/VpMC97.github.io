@@ -1,0 +1,146 @@
+
+.profile__wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+    
+.profile__img-container{
+    display: flex;
+    max-height: 380px;
+    overflow: hidden;
+    margin: 10px 50px;
+    border-radius: 10px;
+    outline: 1px solid var(--title-color);
+    outline-offset: -8px;
+    box-shadow: 5px 5px 8px 0  rgba(0, 37, 97, 0.395);
+}
+
+.profile__img{
+    max-width: 100%;
+    width: 400px;
+    margin: auto;
+}
+
+.profile__data-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    max-width: 480px;
+    margin: auto;
+}
+
+h1, h2{
+    color: var(--title-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.profile__data{
+    text-wrap: pretty;
+    margin-bottom: 20px;
+    color: var(--font-color)
+}
+
+span{
+    color: var(--title-color);
+}
+
+
+.profile__title-subtitle{
+    text-align: left;
+    font-size: 3em;
+}
+
+.profile__title-subtitle span{
+    font-size: 2.7em;
+}
+
+.profile__title-nickname{
+    text-align: left;
+    font-size: 2em;
+    color: var(--title-color);
+}
+
+.profile__title-nickname span{
+    font-weight: 500;
+}
+
+.download-button {
+    position: relative;
+    border-width: 0;
+    color: var(--font-sub-color);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.docs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 40px;
+    padding: 0 10px;
+    border-radius: 4px;
+    z-index: 1;
+    background-color: var(--card-background);
+    border: solid 1px #e8e8e82d;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.download-button:hover {
+  box-shadow:
+    var(--portfolio-background) 0px 54px 55px,
+    var(--portfolio-background) 0px -12px 30px,
+    var(--portfolio-background) 0px 4px 6px,
+    var(--portfolio-background) 0px 12px 13px,
+    var(--portfolio-background) 0px -3px 5px;
+}
+
+.download {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+    z-index: -1;
+    border-radius: 4px;
+    transform: translateY(0%);
+    background-color: var(--bar-color);
+    border: solid 1px var(--card-background);
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.download-button:hover .download {
+  transform: translateY(100%);
+}
+
+.download svg polyline,
+.download svg line {
+  animation: docs 1s infinite;
+}
+
+@keyframes docs {
+  0% {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: translateY(-15%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
