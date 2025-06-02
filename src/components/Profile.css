@@ -44,6 +44,7 @@ h1, h2{
 
 .profile__data{
     text-wrap: pretty;
+    font-size: 1.2em;
     margin-bottom: 20px;
     color: var(--font-color)
 }

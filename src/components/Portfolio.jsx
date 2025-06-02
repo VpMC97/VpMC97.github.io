@@ -5,8 +5,12 @@ import './Portfolio.css';
 const Portfolio = () => {
     return (
         <section className="portfolio" id="portfolio">
-            <Projects />
-            <Technologies />
+            <div className="scroll-reveal">
+                <Projects />
+            </div>
+            <div className="scroll-reveal delay-400">
+                <Technologies />
+            </div>
         </section>
     );
 };

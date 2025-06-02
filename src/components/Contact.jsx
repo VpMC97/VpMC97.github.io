@@ -4,7 +4,7 @@ import './Contact.css';
 const Contact = () => {
     return (
         <section id="contact" className="contact">
-            <div className="mail">
+            <div className="mail scroll-reveal">
                 <h2 className="mail__title">Get in touch</h2>
                 <p>Development request, work inquiries, hiring requests, funny jokes, and just-saying-hi's can be sent to:</p>
                 <a href="mailto:isapamelamendez97@gmail.com" className="mail__link">

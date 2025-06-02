@@ -1,0 +1,27 @@
+/* Scroll-based animations */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right {
+    will-change: transform, opacity;
+}
+
+/* Delay variations */
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-400 {
+    transition-delay: 400ms;
+}
+
+.delay-600 {
+    transition-delay: 600ms;
+}
+
+/* Ensure elements are visible if JavaScript fails to load */
+.no-js .scroll-reveal,
+.no-js .scroll-reveal-left,
+.no-js .scroll-reveal-right {
+    opacity: 1;
+    transform: none;
+} 

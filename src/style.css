@@ -1,3 +1,5 @@
+@import './animations.css';
+
 :root{
     --font-color: #000000;
     --font-color-moon: #c89fa3;
@@ -21,9 +23,32 @@
     margin: 0;
     padding: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 12px;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    padding: 30px 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -20vh; 
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+.profile{
+    padding: 30px 0 30px 0;
+    background-color: var(--profile-color);
 }
 
 .dark{

@@ -13,23 +13,26 @@ const Profile = () => {
 
     return (
         <section id="about" className="profile__wrapper">
-            <div className="profile__img-container">
+            <div className="profile__img-container scroll-reveal-left">
                 <img src="/images/profile.png" alt="su" className="profile__img" />
             </div>
-            <div className="profile__title">
+            <div className="profile__title scroll-reveal">
                 <h2 className="profile__title-subtitle">
                     <span>Hi, </span><br />
                     I'm an Information Systems Engineering and Computer Science Student
                 </h2>
                 <p className="profile__title-nickname">my friends call me <span>Isoft</span></p>
             </div>
-            <div className="profile__data-container">
+            <div className="profile__data-container scroll-reveal-right">
                 <div className="profile__data">
                     <h1>Viviana Isapamela Méndez Ché</h1>
                     <br />
-                    <p>Aspiring Information System Engineering and Computer Science student with passion for technology and innovation. Proficient in object-oriented programming, databases, software and web development. Strong teamwork and problem-solving skills developed through academic projects.</p>
+                    <p>An aspiring Information Systems Engineering and Computer Science student with a passion for technology and
+                    innovation. Proficient in web development, object-oriented programming, databases, and software development.
+                    Strong teamwork and problem solving skills developed through academic projects.</p>
                     <br />
-                    <p>Eager to leverage technical expertise and creativity in challenging internship or entry-level position. Committed to continuous learning with a passion for emerging technologies for improvement in the tech field.</p>
+                    <p> Interested in leveraging technical expertise and creativity in a challenging internship or entry-level position.
+                    Committed to continuous learning, with passion for emerging technologies for improvement in the tech field.</p>
                 </div>
                 <button className="download-button" onClick={downloadResume}>
                     <div className="docs">
