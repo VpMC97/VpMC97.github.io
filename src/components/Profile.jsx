@@ -4,8 +4,8 @@ import './Profile.css';
 const Profile = () => {
     const downloadResume = () => {
         const link = document.createElement('a');
-        link.href = import.meta.env.BASE_URL + 'Viviana_Mendez-Resume.pdf';
-        link.download = 'Viviana_Mendez-Resume.pdf';
+        link.href = import.meta.env.BASE_URL + 'Viviana_Mendez_Resume.pdf';
+        link.download = 'Viviana_Mendez_Resume.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

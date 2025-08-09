@@ -108,6 +108,12 @@ section:last-child {
     }
 }
 
+@media screen and (max-width: 470px){
+    .technologies__title{
+        grid-column-end: span 1;
+    }
+}
+
 @keyframes underlined{
     from{
         width: 0%;

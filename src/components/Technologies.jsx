@@ -5,6 +5,7 @@ const technologies = [
     { name: 'HTML', level: 'Advanced', link: 'https://developer.mozilla.org/es/docs/Web/HTML' },
     { name: 'CSS', level: 'Advanced', link: 'https://developer.mozilla.org/es/docs/Web/CSS' },
     { name: 'JavaScript', level: 'Intermediate', link: 'https://developer.mozilla.org/es/docs/Web/JavaScript' },
+    { name: 'TypeScript', level: 'Intermediate', link: 'https://developer.mozilla.org/es/docs/Web/JavaScript' },
     { name: 'React', level: 'Intermediate', link: 'https://es.react.dev/' },
     { name: 'Java', level: 'Intermediate', link: 'https://www.java.com/es/' },
     { name: 'Python', level: 'Intermediate', link: 'https://www.python.org/' },

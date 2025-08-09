@@ -3,6 +3,12 @@ import './Projects.css';
 
 const projectsData = [
     {
+        title: "Amazon Scraper",
+        image: "/images/amazon_project.jpg",
+        description: "Web Scraper for Amazon products, page link in README",
+        link: "https://github.com/VpMC97/isoft-amazon-project"
+    },
+    {
         title: "Calculator",
         image: "/images/calculator.png",
         description: "Simple calculator made with HTML, CSS and JS",
@@ -19,12 +25,6 @@ const projectsData = [
         image: "/images/brain.png",
         description: "Information web about Neuroscience",
         link: "https://github.com/VpMC97/neuroscience-web-page"
-    },
-    {
-        title: "Billing System",
-        image: "/images/bank.png",
-        description: "CRUD for a billing system with Java and SQLServer",
-        link: "https://github.com/VpMC97/Billing-System-Java-DB"
     }
 ];
 
